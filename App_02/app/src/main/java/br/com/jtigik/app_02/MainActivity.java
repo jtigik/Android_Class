@@ -3,6 +3,7 @@ package br.com.jtigik.app_02;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     int contador = 0;
     int eventos = 0;
     Pessoa pessoa;
+    List<Pessoa> listaDePessoas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setSobrenome("Silva");
         pessoa.setIdade(getIdade());
 
+        listaDePessoas.add(pessoa);
+
         txtPessoa.setText(pessoa.toString());
         txtIdade.setText(String.format("Idade da Pessoa: %d", pessoa.getIdade()));
         Toast.makeText(this, "Pessoa Criada", Toast.LENGTH_SHORT).show();
@@ -105,11 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void listarPessoas(){
-        /*eventos ++;
-        contador++;
-        txtPessoa.setText(pessoa.getNome()+ " "+pessoa.getSobrenome()+
-                " "+pessoa.getIdade()+" - "+contador+ " - Pessoa(s)");
-        Log.i("eventos", "Total eventos: "+eventos + " Listar Pessoa");*/
+        String.valueOf(" Listagem de Pessoas encontradas\n");
+        for (Pessoa pessoa: listaDePessoas) {
+            Log.i("eventos", String.format("Pessoa atual: %s - Idade: %d", pessoa.getNome(), pessoa.getIdade()));
+        }
     }
 
     @SuppressLint("SetTextI18n")
