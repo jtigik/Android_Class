@@ -23,14 +23,11 @@ public class MainActivity extends AppCompatActivity {
     private Button btnListarPessoa;
     private Button btnRemoverPessoa;
     private Button btnSair;
-
     private TextView txtCriarPessoa;
     private TextView txtPessoa;
     private TextView txtIdade;
-
     int contador = 0;
     int eventos = 0;
-
     Pessoa pessoa;
 
     @Override
@@ -94,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setIdade(getIdade());
 
         txtPessoa.setText(pessoa.toString());
-        txtIdade.setText(String.valueOf(pessoa.getIdade()));
-
+        txtIdade.setText(String.format("Idade da Pessoa: %d", pessoa.getIdade()));
         Toast.makeText(this, "Pessoa Criada", Toast.LENGTH_SHORT).show();
 
         contador++;
@@ -109,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void listarPessoas(){
-        eventos ++;
+        /*eventos ++;
         contador++;
         txtPessoa.setText(pessoa.getNome()+ " "+pessoa.getSobrenome()+
                 " "+pessoa.getIdade()+" - "+contador+ " - Pessoa(s)");
-        Log.i("eventos", "Total eventos: "+eventos + " Listar Pessoa");
+        Log.i("eventos", "Total eventos: "+eventos + " Listar Pessoa");*/
     }
 
     @SuppressLint("SetTextI18n")
@@ -125,26 +121,27 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setSobrenome("Silva");
             pessoa.setIdade(getIdade());
             txtPessoa.setText(pessoa.toString());
-            txtIdade.setText(String.valueOf(pessoa.getIdade()));
-            Log.i("eventos", "Pessoa editada:  "+pessoa.toString());
+            txtIdade.setText(String.format("Idade da Pessoa: %d", pessoa.getIdade()));
         }else{
             Toast.makeText(this, "Pessoa não encontrada", Toast.LENGTH_SHORT).show();
+            Log.e("eventos", "Pessoa não existe");
         }
-
-//        eventos ++;
-//        contador++;
-//        txtPessoa.setText(pessoa.getNome()+ " "+pessoa.getSobrenome()+
-//                " "+pessoa.getIdade()+" - "+contador+ " - Pessoa(s)");
-//        Log.d("eventos", "Total eventos: "+eventos + " Editar Pessoa");
     }
     @SuppressLint("SetTextI18n")
     private void removerPessoa(){
-        eventos ++;
-        contador++;
-        txtPessoa.setText(pessoa.getNome()+ " "+pessoa.getSobrenome()+
-                " "+pessoa.getIdade()+" - "+contador+ " - Pessoa(s)");
-        Log.v("eventos", "Total eventos: "+eventos + " Remover Pessoa");
 
+        if(pessoa != null){
+            Toast.makeText(this, String.format("%d Pessoa encontrada", contador), Toast.LENGTH_SHORT).show();
+            pessoa.setNome(null);
+            pessoa.setSobrenome(null);
+            pessoa.setIdade(0);
+            txtPessoa.setText("Nome: - \nSobrenome: -");
+            txtIdade.setText("Idade da Pessoa: -");
+            Log.i("eventos", "Pessoa removida:  "+pessoa.toString());
+        }else{
+            Toast.makeText(this, "Pessoa não encontrada", Toast.LENGTH_SHORT).show();
+            Log.e("eventos", "Pessoa não existe");
+        }
     }
 
     private static int getIdade(){
