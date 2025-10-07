@@ -40,6 +40,6 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Nome: " + nome + "\nSobrenome: " + sobrenome + "\nIdade: " + idade;
+        return "Nome: " + nome + "\nSobrenome: " + sobrenome/* + "\nIdade: " + idade*/;
     }
 }
